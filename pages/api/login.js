@@ -4,8 +4,13 @@ import bcrypt from 'bcryptjs'; // Import bcrypt for password hashing
 import jwt from 'jsonwebtoken';
 export default async (req, res) => {
 
-  res.setHeader('Access-Control-Allow-Origin', 'https://mm-black-phi.vercel.app');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');  // Define allowed methods
+  const allowedOrigins = ['localhost:3000', 'https://mm-black-phi.vercel.app'];
+  if (!allowedOrigins.includes(req.headers.origin)) {
+    return res.status(403).json({ error: 'Unauthorized origin' });
+  }
+
+  res.setHeader('Access-Control-Allow-Origin', req.headers.origin); // Dynamically set the origin header
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');  // Allowed methods
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allowed headers
 
   if (req.method === 'POST') {
