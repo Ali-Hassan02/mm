@@ -17,7 +17,7 @@ const LoginPage = () => {
     // Check if the token exists on the login page
     const checkToken = async () => {
       try {
-        const response = await fetch(`${process.env.BASE_URL}/api/getToken`);
+        const response = await fetch('/api/getToken');
         if (response.ok) {
           // If a valid token is found, redirect to the admin dashboard
           router.push('/admin-dashboard');
@@ -37,7 +37,7 @@ const LoginPage = () => {
     // Simulate login process (replace with actual authentication logic)
     setTimeout(async () => {
       try {
-        const response = await fetch(`${process.env.BASE_URL}/api/login`, {
+        const response = await fetch('/api/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json', // Correct Content-Type
