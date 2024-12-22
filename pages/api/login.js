@@ -3,6 +3,11 @@ import Admin from '@/models/Admin';
 import bcrypt from 'bcryptjs'; // Import bcrypt for password hashing
 import jwt from 'jsonwebtoken';
 export default async (req, res) => {
+
+  res.setHeader('Access-Control-Allow-Origin', 'https://mm-black-phi.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');  // Define allowed methods
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allowed headers
+
   if (req.method === 'POST') {
     try {
       // Connect to the database
